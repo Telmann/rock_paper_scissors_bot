@@ -21,12 +21,27 @@ yes_no_kb: ReplyKeyboardMarkup = yes_no_kb_builder.as_markup(
     one_time_keyboard=True,
     resize_keyboard=True)
 
+# the usual version of game buttton and star trek version button
+button_first_game: KeyboardButton = KeyboardButton(text=LEXICON_RU['first_game'])
+button_sec_game: KeyboardButton = KeyboardButton(text=LEXICON_RU['second_game'])
+
+first_second_builder: ReplyKeyboardBuilder = ReplyKeyboardBuilder()
+
+first_second_builder.row(button_first_game, button_sec_game, width=4)
+
+first_second_kb: ReplyKeyboardMarkup = first_second_builder.as_markup(
+    one_time_keyboard=True,
+    resize_keyboard=True)
+
 # ------- Создаем игровую клавиатуру без использования билдера -------
 
 # Создаем кнопки игровой клавиатуры
 button_1: KeyboardButton = KeyboardButton(text=LEXICON_RU['rock'])
 button_2: KeyboardButton = KeyboardButton(text=LEXICON_RU['scissors'])
 button_3: KeyboardButton = KeyboardButton(text=LEXICON_RU['paper'])
+# star trek buttons 4 and 5
+button_4: KeyboardButton = KeyboardButton(text=LEXICON_RU['lizzard'])
+button_5: KeyboardButton = KeyboardButton(text=LEXICON_RU['spok'])
 
 # Создаем игровую клавиатуру с кнопками "Камень 🗿",
 # "Ножницы ✂" и "Бумага 📜" как список списков
@@ -34,4 +49,13 @@ game_kb: ReplyKeyboardMarkup = ReplyKeyboardMarkup(
     keyboard=[[button_1],
               [button_2],
               [button_3]],
+    resize_keyboard=True)
+
+# second game keyboard options
+game_kb_startrek: ReplyKeyboardMarkup = ReplyKeyboardMarkup(
+    keyboard=[[button_1],
+              [button_2],
+              [button_3],
+              [button_4],
+              [button_5]],
     resize_keyboard=True)

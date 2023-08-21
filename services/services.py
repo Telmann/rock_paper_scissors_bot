@@ -10,6 +10,10 @@ def get_bot_choice() -> str:
     return random.choice(['rock', 'paper', 'scissors'])
 
 
+def get_bot_choice_2() -> str:
+    return random.choice(['rock', 'paper', 'scissors', 'lizzard', 'spok'])
+
+
 # Функция, возвращающая ключ из словаря, по которому
 # хранится значение, передаваемое как аргумент - выбор пользователя
 def _normalize_user_answer(user_answer: str) -> str:
@@ -31,3 +35,24 @@ def get_winner(user_choice: str, bot_choice: str) -> str:
         return 'user_won'
     else:
         return 'bot_won'
+
+
+# the same function just for the star trek game
+def get_winner_2(user_choice: str, bot_choice: str) -> str:
+    user_choice = _normalize_user_answer(user_choice)
+    rules: dict[str, set[str]] = {
+        'rock': {'scissors', 'lizzard'},
+        'spok': {'rock', 'scissors'},
+        'scissors': {'paper', 'lizzard'},
+        'paper': {'rock', 'spok'},
+        'lizzard': {'spok', 'paper'}
+    }
+
+    if user_choice == bot_choice:
+        return 'nobody_won'
+    elif bot_choice in rules[user_choice]:
+        return 'user_won'
+    elif user_choice in rules[bot_choice]:
+        return 'bot_won'
+    #else:
+        #return 'invalid_choice'
